@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 as base
+FROM ubuntu:20.04 as base
 
 # make clear that it is a noninteractive session
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -22,8 +22,8 @@ git
 # # ENV LC_ALL en_US.UTF-8  
 
 RUN cd /tmp && \
-wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz && \
-tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
+wget https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz && \
+tar -C /usr/local -xzf go1.14.2.linux-amd64.tar.gz
 ENV PATH /usr/local/go/bin:${PATH}
 
 # Install Python3.7 from ppa (for fast speed)
@@ -68,7 +68,6 @@ RUN rm ./manager
 
 # expose ports
 EXPOSE 8080
-EXPOSE 4430
 
 WORKDIR /home/source/proxy/
 
